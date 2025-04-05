@@ -26,6 +26,16 @@ export default function WorkingWithObjects(app) {
     assignment.title = newTitle;
     res.json(assignment);
   });
+  app.get("/lab5/assignment/completed/:completedOrNot", (req, res) => {
+    const { completedOrNot } = req.params;
+    assignment.completed = completedOrNot;
+    res.json(assignment);
+  });
+  app.get("/lab5/assignment/score/:newScore", (req, res) => {
+    const { newScore } = req.params;
+    assignment.score = newScore;
+    res.json(assignment);
+  });
 
   app.get("/lab5/module", (req, res) => {
     res.json(module);
@@ -36,6 +46,11 @@ export default function WorkingWithObjects(app) {
   app.get("/lab5/module/name/:newName", (req, res) => {
     const { newName } = req.params;
     module.name = newName;
+    res.json(module);
+  });
+  app.get("/lab5/module/description/:newDescription", (req, res) => {
+    const { newDescription } = req.params;
+    module.description = newDescription;
     res.json(module);
   });
 };
