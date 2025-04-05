@@ -1,5 +1,5 @@
-let todos = [ { id: 1, title: "Task 1", completed: false },  { id: 2, title: "Task 2", completed: true },
-              { id: 3, title: "Task 3", completed: false },  { id: 4, title: "Task 4", completed: true }, ];
+let todos = [ { id: 1, title: "Task 1", completed: false, description: 'I am TODO #1' },  { id: 2, title: "Task 2", completed: true, description: 'I am TODO #2' },
+              { id: 3, title: "Task 3", completed: false, description: 'I am TODO #3' },  { id: 4, title: "Task 4", completed: true, description: 'I am TODO #4' }, ];
 
 export default function WorkingWithArrays(app) {
     app.get("/lab5/todos", (req, res) => {
@@ -51,6 +51,18 @@ export default function WorkingWithArrays(app) {
         const { id, title } = req.params;
         const todo = todos.find((t) => t.id === parseInt(id));
         todo.title = title;
+        res.json(todos);
+    });  
+    app.get("/lab5/todos/:id/completed/:completed", (req, res) => {
+        const { id, completed } = req.params;
+        const todo = todos.find((t) => t.id === parseInt(id));
+        todo.completed = completed;
+        res.json(todos);
+    });  
+    app.get("/lab5/todos/:id/description/:description", (req, res) => {
+        const { id, description } = req.params;
+        const todo = todos.find((t) => t.id === parseInt(id));
+        todo.description = description;
         res.json(todos);
     });  
     app.put("/lab5/todos/:id", (req, res) => {
